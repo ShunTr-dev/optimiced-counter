@@ -30,8 +30,13 @@ const Counter = memo(function Counter({ initialCount }) {
 
     const initialCountIsPrime = useMemo(() => isPrime(initialCount), [initialCount])
 
+    // Sub optimal solution to force re-render on change state of initialCount instead you should use a key
+    // useEffect(() => {
+    //     setCounterChanges([{ value: initialCount, id: Math.random() * 1000 }])
+    // }, [initialCount])
+
     // const [counter, setCounter] = useState(initialCount);
-    const [counterChanges, setCounterChanges] = useState([{value: initialCount, id: Math.random() * 1000}])
+    const [counterChanges, setCounterChanges] = useState([{ value: initialCount, id: Math.random() * 1000 }])
 
     const currentCounter = counterChanges.reduce((prevCounter, counterChange) => prevCounter + counterChange.value, 0)
 
